@@ -82,6 +82,21 @@
         .counter {
             transition: all 0.5s ease;
         }
+        
+        /* Single page navigation */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Active navigation link */
+        .nav-link.active {
+            color: #60a5fa;
+            font-weight: bold;
+        }
     </style>
     <!-- Tidio Chat Bot Integration -->
     <script src="//code.tidio.co/eee60bz3q8esfbzozrx22nucdpijvrlw.js" async></script>
@@ -91,16 +106,16 @@
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 bg-[#0d0d1b]/95 backdrop-blur-sm shadow-xl">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-extrabold tracking-tight gradient-text flex items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-tight gradient-text flex items-center" onclick="showPage('home')">
                 <i class="fas fa-seedling mr-2"></i>DakanMill
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-300 hover:text-blue-400 transition duration-300">Home</a>
-                <a href="#about" class="text-gray-300 hover:text-blue-400 transition duration-300">About Us</a>
-                <a href="#services" class="text-gray-300 hover:text-blue-400 transition duration-300">Services</a>
-                <a href="#course" class="text-gray-300 hover:text-blue-400 transition duration-300">Training</a>
-                <a href="#solutions" class="text-gray-300 hover:text-blue-400 transition duration-300">Solutions</a>
-                <a href="#contact" class="text-gray-300 hover:text-blue-400 transition duration-300">Contact</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300 active" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300" onclick="showPage('about')">About Us</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300" onclick="showPage('services')">Services</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300" onclick="showPage('training')">Training</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300" onclick="showPage('solutions')">Solutions</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-blue-400 transition duration-300" onclick="showPage('contact')">Contact</a>
             </div>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-blue-400 focus:outline-none">
@@ -109,81 +124,127 @@
         </nav>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-[#16162a] shadow-lg z-50">
-            <a href="#home" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">Home</a>
-            <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">About Us</a>
-            <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">Services</a>
-            <a href="#course" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">Training</a>
-            <a href="#solutions" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">Solutions</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300">Contact</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('home')">Home</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('about')">About Us</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('services')">Services</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('training')">Training</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('solutions')">Solutions</a>
+            <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-[#0d0d1b] transition duration-300" onclick="showPage('contact')">Contact</a>
         </div>
     </header>
 
     <main>
-        <!-- Home Section -->
-        <section id="home" class="relative overflow-hidden pt-24 pb-32 md:pt-40 md:pb-48">
-            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 fade-in">
-                    Building a <span class="gradient-text">Climate-Resilient</span> Rice Sector
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8 fade-in">
-                    Transforming rice production in Tanzania's Western Zone through innovation, sustainability, and market-driven solutions.
-                </p>
-                <div class="space-x-4 fade-in">
-                    <a href="#solutions" class="inline-block btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/50 transition duration-300">
-                        Explore Our Solutions
-                    </a>
-                    <a href="#course" class="inline-block bg-transparent border-2 border-blue-500 text-blue-400 font-semibold py-3 px-8 rounded-full hover:bg-blue-500 hover:text-white transition duration-300">
-                        Training Programs
-                    </a>
-                </div>
-                <div class="mt-16 p-4 bg-blue-900/20 rounded-xl max-w-md mx-auto border border-blue-700/50 fade-in">
-                    <p class="text-lg font-medium text-blue-300">
-                        <i class="fas fa-exclamation-triangle mr-2"></i>
-                        <strong>Current Challenge:</strong> Low yields (~1 t/ha) due to traditional methods. 
-                        <strong>Our Goal:</strong> 3 t/ha by Year 2.
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <!-- Home Section -->
+            <div class="relative overflow-hidden pt-24 pb-32 md:pt-40 md:pb-48">
+                <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 fade-in">
+                        Building a <span class="gradient-text">Climate-Resilient</span> Rice Sector
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8 fade-in">
+                        Transforming rice production in Tanzania's Western Zone through innovation, sustainability, and market-driven solutions.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="py-12 bg-[#121226]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="glass-card p-6 rounded-xl">
-                        <p class="text-4xl font-bold text-blue-400 counter" data-target="500">0</p>
-                        <p class="text-gray-400 mt-2">Farmers Targeted</p>
+                    <div class="space-x-4 fade-in">
+                        <a href="#" class="inline-block btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/50 transition duration-300" onclick="showPage('solutions')">
+                            Explore Our Solutions
+                        </a>
+                        <a href="#" class="inline-block bg-transparent border-2 border-blue-500 text-blue-400 font-semibold py-3 px-8 rounded-full hover:bg-blue-500 hover:text-white transition duration-300" onclick="showPage('training')">
+                            Training Programs
+                        </a>
                     </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <p class="text-4xl font-bold text-blue-400 counter" data-target="300">0</p>
-                        <p class="text-gray-400 mt-2">Hectares Covered</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <p class="text-4xl font-bold text-blue-400 counter" data-target="3">0</p>
-                        <p class="text-gray-400 mt-2">Target Yield (t/ha)</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl">
-                        <p class="text-4xl font-bold text-blue-400 counter" data-target="2">0</p>
-                        <p class="text-gray-400 mt-2">Break-Even Year</p>
+                    <div class="mt-16 p-4 bg-blue-900/20 rounded-xl max-w-md mx-auto border border-blue-700/50 fade-in">
+                        <p class="text-lg font-medium text-blue-300">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            <strong>Current Challenge:</strong> Low yields (~1 t/ha) due to traditional methods. 
+                            <strong>Our Goal:</strong> 3 t/ha by Year 2.
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <!-- Stats Section -->
+            <section class="py-12 bg-[#121226]">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-4xl font-bold text-blue-400 counter" data-target="500">0</p>
+                            <p class="text-gray-400 mt-2">Farmers Targeted</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-4xl font-bold text-blue-400 counter" data-target="300">0</p>
+                            <p class="text-gray-400 mt-2">Hectares Covered</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-4xl font-bold text-blue-400 counter" data-target="3">0</p>
+                            <p class="text-gray-400 mt-2">Target Yield (t/ha)</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl">
+                            <p class="text-4xl font-bold text-blue-400 counter" data-target="2">0</p>
+                            <p class="text-gray-400 mt-2">Break-Even Year</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Services Overview -->
+            <section class="py-20 md:py-32 bg-[#0d0d1b]">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">Our Integrated Approach</h2>
+                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <div class="glass-card p-8 rounded-xl text-center fade-in">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-tractor text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white">Modern Production</h3>
+                            <p class="text-gray-400">Improved seed varieties, mechanization, and sustainable irrigation systems.</p>
+                        </div>
+                        <div class="glass-card p-8 rounded-xl text-center fade-in">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white">Farmer Training</h3>
+                            <p class="text-gray-400">Comprehensive capacity building for modern, climate-resilient farming.</p>
+                        </div>
+                        <div class="glass-card p-8 rounded-xl text-center fade-in">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-handshake text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white">Market Access</h3>
+                            <p class="text-gray-400">Direct market linkages eliminating middlemen and securing better prices.</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="#" class="btn-primary inline-block text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-blue-500/50 transition duration-300" onclick="showPage('services')">
+                            View All Services
+                        </a>
+                    </div>
+                </div>
+            </section>
         </section>
 
-        <!-- About Us Section -->
-        <section id="about" class="py-20 md:py-32 bg-[#121226]">
+        <!-- About Us Page -->
+        <section id="about" class="page py-20 md:py-32 bg-[#121226]">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-4xl font-extrabold text-center mb-12 gradient-text fade-in">About Dakan Mill</h2>
                 <div class="lg:flex lg:space-x-12 items-center">
                     <div class="lg:w-1/2 mb-10 lg:mb-0 fade-in">
+                        <div class="flex items-center mb-6">
+                            <img src="https://github.com/Dakan94/Rice-Solution1/blob/main/Pfi.jpg?raw=true" alt="Daniel - CEO of Dakan Mill" class="w-24 h-24 rounded-full object-cover border-4 border-blue-500">
+                            <div class="ml-6">
+                                <h3 class="text-2xl font-bold text-white">Daniel</h3>
+                                <p class="text-blue-400">Founder & CEO</p>
+                                <p class="text-gray-400 text-sm mt-1">Practical farming experience + Erasmus+ marketing training</p>
+                            </div>
+                        </div>
                         <p class="text-lg text-gray-300 mb-6">
                             Dakan Mill is dedicated to addressing the underperformance of rice production in the <strong>Kigoma, Tabora, and Katavi Regions</strong> of Tanzania's Western Zone. We leverage extensive local experience to turn rice farming into a modern, profitable, and sustainable enterprise.
                         </p>
                         <p class="text-lg text-gray-300 mb-8">
                             Our vision is to become a leading agribusiness model, empowering smallholder farmers and significantly contributing to national food security. We are driven by <strong>Innovation, Sustainability, Integrity, Empowerment, and Excellence</strong>.
                         </p>
-                        <a href="#contact" class="btn-primary inline-block text-white font-semibold py-2 px-6 rounded-full">
+                        <a href="#" class="btn-primary inline-block text-white font-semibold py-2 px-6 rounded-full" onclick="showPage('contact')">
                             Partner With Us
                         </a>
                     </div>
@@ -204,20 +265,20 @@
                         </div>
                         <div class="glass-card p-6 rounded-xl col-span-2">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-user-tie text-blue-400 text-xl mr-2"></i>
-                                <h3 class="text-2xl font-semibold text-blue-400">The Leadership</h3>
+                                <i class="fas fa-users text-blue-400 text-xl mr-2"></i>
+                                <h3 class="text-2xl font-semibold text-blue-400">Our Team</h3>
                             </div>
-                            <p class="text-gray-400">Led by Daniel (CEO), who brings practical farming experience and marketing expertise (Erasmus+ program training).</p>
+                            <p class="text-gray-400">Led by Daniel (CEO) with practical farming experience and marketing expertise. Supported by local agronomists and skilled operational staff.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- The Services Section -->
-        <section id="services" class="py-20 md:py-32 bg-[#0d0d1b]">
+        <!-- Services Page -->
+        <section id="services" class="page py-20 md:py-32 bg-[#0d0d1b]">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">The Integrated Services We Offer</h2>
+                <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">Our Integrated Services</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     
                     <!-- Service 1: Rice Production -->
@@ -256,13 +317,88 @@
                         <p class="text-gray-400">Ongoing training and extension support to smallholders on modern, climate-resilient farming and water management.</p>
                     </div>
                 </div>
+                
+                <!-- Additional Service Details -->
+                <div class="mt-16 max-w-4xl mx-auto">
+                    <div class="glass-card p-8 rounded-xl fade-in">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-4">Our Operational Approach</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-2">Key Activities</h4>
+                                <ul class="text-gray-400 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Land preparation and planting</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Irrigation and mechanized harvesting</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Storage, milling, and processing</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Distribution to target markets</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-2">Key Resources</h4>
+                                <ul class="text-gray-400 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Farmland in Western Zone</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Tractors, threshers, and irrigation equipment</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Skilled agronomists and field officers</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                        <span>Partnerships with input suppliers</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
-        <!-- Good Cultivation Methods (Course) Section -->
-        <section id="course" class="py-20 md:py-32 bg-[#121226]">
+        <!-- Training Page -->
+        <section id="training" class="page py-20 md:py-32 bg-[#121226]">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-4xl font-extrabold text-center mb-12 gradient-text fade-in">Farmer Training Programs</h2>
+                
+                <!-- Problem Identification -->
+                <div class="max-w-4xl mx-auto mb-12 glass-card p-6 rounded-xl fade-in">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mr-4">
+                            <img src="https://github.com/Dakan94/Rice-Solution1/blob/main/Avatar.jpg?raw=true" alt="Traditional Farming Method" class="w-24 h-24 rounded-lg object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-red-400 mb-2">Problem: Traditional Farming Methods</h3>
+                            <p class="text-gray-300 mb-4">
+                                Many farmers in Tanzania's Western Zone still rely on traditional methods that limit productivity and increase vulnerability to climate change. These practices include:
+                            </p>
+                            <ul class="text-gray-400 list-disc list-inside space-y-1">
+                                <li>Use of low-yielding local seed varieties</li>
+                                <li>Manual farming with rudimentary tools</li>
+                                <li>Rain-fed agriculture with no irrigation backup</li>
+                                <li>Poor post-harvest handling leading to significant losses</li>
+                                <li>Limited knowledge of modern agronomic practices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Training Overview -->
                 <div class="max-w-4xl mx-auto glass-card p-8 rounded-xl shadow-2xl border border-gray-700 fade-in">
                     <div class="md:flex md:space-x-8 items-center">
                         <div class="md:w-2/3">
@@ -270,25 +406,28 @@
                             <p class="text-lg text-gray-300 mb-6">
                                 Our comprehensive training program is the backbone of our empowerment strategy. It transitions farmers from traditional, low-yielding methods (average ~1 t/ha) to high-efficiency, climate-smart practices.
                             </p>
-                            <ul class="space-y-3 text-gray-400 mb-6">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i>
-                                    <span><strong>Seed & Input Quality:</strong> Training on identifying and using improved seed varieties.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i>
-                                    <span><strong>Water Management:</strong> Implementing sustainable irrigation systems and techniques.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i>
-                                    <span><strong>Mechanization:</strong> Integrating machinery for crucial activities like land preparation and harvesting.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i>
-                                    <span><strong>Post-Harvest Techniques:</strong> Reducing losses through proper handling and storage protocols.</span>
-                                </li>
-                            </ul>
-                            <a href="#contact" class="btn-primary inline-block text-white font-semibold py-2 px-6 rounded-full">
+                            <div class="mb-6">
+                                <h4 class="text-xl font-semibold text-blue-400 mb-3">Training Modules</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-white mb-2">Seed & Input Quality</h5>
+                                        <p class="text-gray-400 text-sm">Training on identifying and using improved seed varieties, proper fertilizer application, and pest management.</p>
+                                    </div>
+                                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-white mb-2">Water Management</h5>
+                                        <p class="text-gray-400 text-sm">Implementing sustainable irrigation systems and techniques for optimal water use.</p>
+                                    </div>
+                                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-white mb-2">Mechanization</h5>
+                                        <p class="text-gray-400 text-sm">Integrating machinery for land preparation, planting, and harvesting to increase efficiency.</p>
+                                    </div>
+                                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-white mb-2">Post-Harvest Techniques</h5>
+                                        <p class="text-gray-400 text-sm">Reducing losses through proper handling, drying, storage, and processing protocols.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn-primary inline-block text-white font-semibold py-2 px-6 rounded-full" onclick="showPage('contact')">
                                 Inquire About Training
                             </a>
                         </div>
@@ -301,11 +440,114 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Detailed Training Curriculum -->
+                <div class="max-w-5xl mx-auto mt-16">
+                    <h3 class="text-3xl font-bold text-center mb-8 gradient-text fade-in">Comprehensive Training Curriculum</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="glass-card p-6 rounded-xl fade-in">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-4">Pre-Planting Phase</h4>
+                            <ul class="text-gray-400 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-seedling text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Seed Selection:</strong> Identifying and sourcing high-yield, climate-resilient varieties</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-tools text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Land Preparation:</strong> Modern techniques for soil testing and land leveling</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Soil Management:</strong> Proper fertilization and soil amendment practices</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl fade-in">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-4">Growing Phase</h4>
+                            <ul class="text-gray-400 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-tint text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Water Management:</strong> Efficient irrigation scheduling and water conservation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-bug text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Pest & Disease Control:</strong> Integrated pest management strategies</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-leaf text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Weed Management:</strong> Effective and sustainable weed control methods</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl fade-in">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-4">Harvest & Post-Harvest</h4>
+                            <ul class="text-gray-400 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-hourglass-half text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Harvest Timing:</strong> Determining optimal harvest time for maximum yield</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-compress-arrows-alt text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Processing:</strong> Proper threshing, drying, and milling techniques</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-warehouse text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Storage:</strong> Methods to prevent post-harvest losses and maintain quality</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6 rounded-xl fade-in">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-4">Business & Marketing</h4>
+                            <ul class="text-gray-400 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-line text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Market Analysis:</strong> Understanding market demands and pricing</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-handshake text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Market Linkages:</strong> Connecting directly with buyers and institutions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-calculator text-green-400 mt-1 mr-2"></i>
+                                    <span><strong>Financial Management:</strong> Basic record-keeping and cost analysis</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Training Impact -->
+                <div class="max-w-4xl mx-auto mt-16 glass-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold text-center mb-6 gradient-text">Expected Training Outcomes</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-arrow-up text-white text-xl"></i>
+                            </div>
+                            <p class="text-xl font-semibold text-white">Yield Increase</p>
+                            <p class="text-gray-400">From 1 t/ha to 3 t/ha</p>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-money-bill-wave text-white text-xl"></i>
+                            </div>
+                            <p class="text-xl font-semibold text-white">Income Growth</p>
+                            <p class="text-gray-400">Higher profits through better practices</p>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                            </div>
+                            <p class="text-xl font-semibold text-white">Climate Resilience</p>
+                            <p class="text-gray-400">Adaptation to climate challenges</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Solution We Provide Section -->
-        <section id="solutions" class="py-20 md:py-32 bg-[#0d0d1b] relative overflow-hidden">
+        <!-- Solution We Provide Page -->
+        <section id="solutions" class="page py-20 md:py-32 bg-[#0d0d1b] relative overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">The Dakan Mill Solution: Vertical Integration</h2>
                 <div class="max-w-5xl mx-auto">
@@ -344,85 +586,8 @@
             </div>
         </section>
 
-        <!-- Financial Projections (Optional/Key Outcomes) -->
-        <section class="py-20 md:py-32 bg-[#121226]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">Key Outcomes & Impact</h2>
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <!-- Outcome 1 -->
-                    <div class="p-6 glass-card rounded-xl text-center fade-in">
-                        <p class="text-6xl font-extrabold gradient-text">3<span class="text-2xl">t/ha</span></p>
-                        <p class="text-xl font-semibold mt-2 text-white">Target Yield</p>
-                        <p class="text-gray-400 text-sm mt-1">(vs. current ~1 t/ha)</p>
-                    </div>
-                    <!-- Outcome 2 -->
-                    <div class="p-6 glass-card rounded-xl text-center fade-in">
-                        <p class="text-6xl font-extrabold gradient-text">Y2</p>
-                        <p class="text-xl font-semibold mt-2 text-white">Break-Even</p>
-                        <p class="text-gray-400 text-sm mt-1">Projected achievement by Year 2</p>
-                    </div>
-                    <!-- Outcome 3 -->
-                    <div class="p-6 glass-card rounded-xl text-center fade-in">
-                        <p class="text-4xl md:text-5xl font-extrabold gradient-text">USD $300,000</p>
-                        <p class="text-xl font-semibold mt-2 text-white">Year 3 Revenue Forecast</p>
-                        <p class="text-gray-400 text-sm mt-1">From vertically integrated sales</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="py-20 md:py-32 bg-[#0d0d1b]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text fade-in">What Farmers Say</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Testimonial 1 -->
-                    <div class="glass-card p-6 rounded-xl fade-in">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                                JM
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-semibold text-white">Juma M.</h4>
-                                <p class="text-blue-400 text-sm">Rice Farmer, Tabora</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 italic">"The training on water management has doubled my yields. I can now support my family better."</p>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="glass-card p-6 rounded-xl fade-in">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                                AK
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-semibold text-white">Asha K.</h4>
-                                <p class="text-blue-400 text-sm">Cooperative Leader, Kigoma</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 italic">"Dakan Mill's market linkages have helped us get fair prices for our rice, without middlemen."</p>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="glass-card p-6 rounded-xl fade-in">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                                RM
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-semibold text-white">Robert M.</h4>
-                                <p class="text-blue-400 text-sm">Agronomist, Katavi</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 italic">"The modern cultivation techniques have transformed how we farm. We're more resilient to climate changes."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 md:py-32 bg-[#0d0d1b]">
+        <!-- Contact Page -->
+        <section id="contact" class="page py-20 md:py-32 bg-[#0d0d1b]">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-4xl font-extrabold text-center mb-12 gradient-text fade-in">Get in Touch with Dakan Mill</h2>
                 <div class="max-w-3xl mx-auto glass-card p-8 md:p-12 rounded-xl fade-in">
@@ -459,8 +624,9 @@
                     </form>
                     
                     <div class="mt-8 pt-6 border-t border-gray-700 text-center">
-                        <h4 class="text-xl font-semibold text-blue-400 mb-2">Location</h4>
+                        <h4 class="text-xl font-semibold text-blue-400 mb-2">Contact Information</h4>
                         <p class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i>Kigoma, Tabora & Katavi Regions, Tanzania</p>
+                        <p class="text-gray-400 mt-2"><i class="fas fa-envelope mr-2"></i>nyakweladani@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -473,7 +639,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="md:flex md:justify-between md:items-center">
                 <div class="mb-4 md:mb-0">
-                    <a href="#home" class="text-xl font-extrabold tracking-tight gradient-text flex items-center">
+                    <a href="#" class="text-xl font-extrabold tracking-tight gradient-text flex items-center" onclick="showPage('home')">
                         <i class="fas fa-seedling mr-2"></i>DakanMill
                     </a>
                     <p class="text-gray-500 text-sm mt-2">Building Food Security and Rural Prosperity in Tanzania.</p>
@@ -498,6 +664,37 @@
 
     <!-- JavaScript -->
     <script>
+        // Page Navigation Functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.textContent.toLowerCase().includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                fadeInOnScroll();
+            }, 100);
+        }
+        
         document.addEventListener('DOMContentLoaded', () => {
             // Mobile Menu Functionality
             const menuButton = document.getElementById('mobile-menu-button');
