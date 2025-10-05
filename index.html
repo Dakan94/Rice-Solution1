@@ -97,6 +97,47 @@
             color: #60a5fa;
             font-weight: bold;
         }
+        
+        /* Service modal styling */
+        .service-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .service-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #1e293b;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #f0f0f5;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
     </style>
     <!-- Tidio Chat Bot Integration -->
     <script src="//code.tidio.co/eee60bz3q8esfbzozrx22nucdpijvrlw.js" async></script>
@@ -138,7 +179,7 @@
         <section id="home" class="page active">
             <!-- Home Section -->
             <div class="relative overflow-hidden pt-24 pb-32 md:pt-40 md:pb-48">
-                <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://github.com/Dakan94/Rice-Solution1/blob/main/Pfi.jpg?raw=true'); background-position: center 30%;"></div>
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 fade-in">
                         Building a <span class="gradient-text">Climate-Resilient</span> Rice Sector
@@ -282,39 +323,43 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     
                     <!-- Service 1: Rice Production -->
-                    <div class="glass-card p-8 rounded-xl text-center fade-in">
+                    <div class="glass-card p-8 rounded-xl text-center fade-in cursor-pointer" onclick="openServiceModal('modern-rice')">
                         <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-tractor text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Modern Rice Cultivation</h3>
                         <p class="text-gray-400">Large-scale and smallholder-supported cultivation utilizing improved seed varieties and modern, mechanized inputs.</p>
+                        <p class="text-blue-400 mt-4 font-semibold">Click to learn more →</p>
                     </div>
 
                     <!-- Service 2: Post-Harvest Services -->
-                    <div class="glass-card p-8 rounded-xl text-center fade-in">
+                    <div class="glass-card p-8 rounded-xl text-center fade-in cursor-pointer" onclick="openServiceModal('post-harvest')">
                         <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-warehouse text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Post-Harvest Management</h3>
                         <p class="text-gray-400">Implementation of secure storage facilities and efficient processing to drastically reduce significant post-harvest losses.</p>
+                        <p class="text-blue-400 mt-4 font-semibold">Click to learn more →</p>
                     </div>
 
                     <!-- Service 3: Market Linkages -->
-                    <div class="glass-card p-8 rounded-xl text-center fade-in">
+                    <div class="glass-card p-8 rounded-xl text-center fade-in cursor-pointer" onclick="openServiceModal('market-linkages')">
                         <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-handshake text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Structured Market Access</h3>
                         <p class="text-gray-400">Direct, profitable connections to premium markets, eliminating exploitative middlemen and stabilizing farmer incomes.</p>
+                        <p class="text-blue-400 mt-4 font-semibold">Click to learn more →</p>
                     </div>
 
                     <!-- Service 4: Training Support -->
-                    <div class="glass-card p-8 rounded-xl text-center fade-in">
+                    <div class="glass-card p-8 rounded-xl text-center fade-in cursor-pointer" onclick="openServiceModal('training-support')">
                         <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-graduation-cap text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Capacity Building</h3>
                         <p class="text-gray-400">Ongoing training and extension support to smallholders on modern, climate-resilient farming and water management.</p>
+                        <p class="text-blue-400 mt-4 font-semibold">Click to learn more →</p>
                     </div>
                 </div>
                 
@@ -634,6 +679,303 @@
 
     </main>
 
+    <!-- Service Modals -->
+    <!-- Modern Rice Cultivation Modal -->
+    <div id="modern-rice-modal" class="service-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeServiceModal('modern-rice')">&times;</button>
+            <h2 class="text-3xl font-bold gradient-text mb-6">Modern Rice Cultivation</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Overview</h3>
+                    <p class="text-gray-300">
+                        Our modern rice cultivation approach transforms traditional farming practices through the integration of advanced technologies, improved seed varieties, and sustainable farming methods. We focus on maximizing yield while minimizing environmental impact.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Key Components</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Improved Seed Varieties</h4>
+                            <p class="text-gray-400 text-sm">Introduction of high-yielding, climate-resilient rice varieties adapted to local conditions.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Mechanization</h4>
+                            <p class="text-gray-400 text-sm">Use of tractors, power tillers, and harvesters to increase efficiency and reduce labor costs.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Precision Agriculture</h4>
+                            <p class="text-gray-400 text-sm">Soil testing, proper spacing, and optimized planting density for maximum productivity.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Integrated Pest Management</h4>
+                            <p class="text-gray-400 text-sm">Sustainable approaches to pest control that minimize chemical use and environmental impact.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Implementation Strategy</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Establish demonstration plots to showcase modern techniques</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Provide access to improved seeds and inputs at subsidized rates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Offer mechanization services for land preparation and harvesting</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Implement soil testing and customized fertilization programs</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Expected Outcomes</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">3x</p>
+                            <p class="text-gray-300 text-sm">Yield Increase</p>
+                        </div>
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">40%</p>
+                            <p class="text-gray-300 text-sm">Labor Reduction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post-Harvest Management Modal -->
+    <div id="post-harvest-modal" class="service-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeServiceModal('post-harvest')">&times;</button>
+            <h2 class="text-3xl font-bold gradient-text mb-6">Post-Harvest Management</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Overview</h3>
+                    <p class="text-gray-300">
+                        Our post-harvest management services address the significant losses that occur after harvesting through proper handling, storage, and processing techniques. We help farmers preserve quality and maximize the value of their harvest.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Key Components</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Proper Drying Techniques</h4>
+                            <p class="text-gray-400 text-sm">Implementation of modern drying methods to prevent mold growth and quality deterioration.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Efficient Storage Solutions</h4>
+                            <p class="text-gray-400 text-sm">Hermetic storage bags and silos to protect against pests, moisture, and contamination.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Modern Milling Facilities</h4>
+                            <p class="text-gray-400 text-sm">Clean, efficient milling to maximize rice recovery and maintain grain quality.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Quality Control</h4>
+                            <p class="text-gray-400 text-sm">Sorting, grading, and packaging to meet market standards and command premium prices.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Implementation Strategy</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Establish community-level storage facilities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Provide training on proper post-harvest handling</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Offer mobile milling services to remote farming communities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Implement quality standards and certification processes</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Expected Outcomes</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">70%</p>
+                            <p class="text-gray-300 text-sm">Reduction in Post-Harvest Losses</p>
+                        </div>
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">25%</p>
+                            <p class="text-gray-300 text-sm">Increase in Market Value</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Linkages Modal -->
+    <div id="market-linkages-modal" class="service-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeServiceModal('market-linkages')">&times;</button>
+            <h2 class="text-3xl font-bold gradient-text mb-6">Structured Market Access</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Overview</h3>
+                    <p class="text-gray-300">
+                        Our market linkages program connects farmers directly with buyers, eliminating exploitative middlemen and ensuring fair prices. We create sustainable market relationships that benefit both producers and consumers.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Key Components</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Direct Buyer Relationships</h4>
+                            <p class="text-gray-400 text-sm">Establishing contracts with institutions, retailers, and wholesalers for consistent demand.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Market Information Systems</h4>
+                            <p class="text-gray-400 text-sm">Real-time price information and market trends to help farmers make informed decisions.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Collective Marketing</h4>
+                            <p class="text-gray-400 text-sm">Pooling farmer produce to achieve economies of scale and better bargaining power.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Brand Development</h4>
+                            <p class="text-gray-400 text-sm">Creating premium brands for quality rice that command higher market prices.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Implementation Strategy</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Develop contracts with schools, hotels, and supermarkets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Establish collection centers in key production areas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Implement mobile technology for market information dissemination</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Create farmer cooperatives for collective bargaining</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Expected Outcomes</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">30%</p>
+                            <p class="text-gray-300 text-sm">Higher Farmgate Prices</p>
+                        </div>
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">80%</p>
+                            <p class="text-gray-300 text-sm">Reduction in Price Volatility</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Training Support Modal -->
+    <div id="training-support-modal" class="service-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeServiceModal('training-support')">&times;</button>
+            <h2 class="text-3xl font-bold gradient-text mb-6">Capacity Building & Training Support</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Overview</h3>
+                    <p class="text-gray-300">
+                        Our comprehensive training programs equip farmers with the knowledge and skills needed to transition from traditional to modern, climate-resilient farming practices. We focus on practical, hands-on learning that delivers measurable results.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Key Components</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Farmer Field Schools</h4>
+                            <p class="text-gray-400 text-sm">Practical, season-long training programs conducted in farmers' fields.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Extension Services</h4>
+                            <p class="text-gray-400 text-sm">Regular follow-up and support from trained field officers and agronomists.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Demonstration Plots</h4>
+                            <p class="text-gray-400 text-sm">Side-by-side comparison of traditional and modern farming practices.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white mb-2">Digital Learning Platforms</h4>
+                            <p class="text-gray-400 text-sm">Mobile-based training modules and information dissemination.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Implementation Strategy</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Establish farmer field schools in each target community</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Train local lead farmers as extension agents</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Develop context-specific training materials in local languages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                            <span>Implement a certification program for trained farmers</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-3">Expected Outcomes</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">500</p>
+                            <p class="text-gray-300 text-sm">Farmers Trained Annually</p>
+                        </div>
+                        <div class="bg-blue-900/30 p-4 rounded-lg">
+                            <p class="text-2xl font-bold text-blue-400">90%</p>
+                            <p class="text-gray-300 text-sm">Adoption of Recommended Practices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-[#121226] py-8 border-t border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -694,6 +1036,22 @@
                 fadeInOnScroll();
             }, 100);
         }
+        
+        // Service Modal Functions
+        function openServiceModal(serviceId) {
+            document.getElementById(`${serviceId}-modal`).classList.add('active');
+        }
+        
+        function closeServiceModal(serviceId) {
+            document.getElementById(`${serviceId}-modal`).classList.remove('active');
+        }
+        
+        // Close modal when clicking outside content
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('service-modal')) {
+                e.target.classList.remove('active');
+            }
+        });
         
         document.addEventListener('DOMContentLoaded', () => {
             // Mobile Menu Functionality
